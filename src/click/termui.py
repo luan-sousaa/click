@@ -283,7 +283,19 @@ def echo_via_pager(
 
     return pager(itertools.chain(text_generator, "\n"), color)
 
+    """These @overload definitions are intentionally duplicated to provide
+        more precise type hints for static type checkers such as mypy and pyright.
+        Each overload describes a distinct usage pattern of the `progressbar`
+        function—either using an iterable or relying solely on a specified length.
 
+        Although the parameter lists appear similar, they serve different contexts
+        and enable improved developer experience with IDE autocompletion and type
+        validation. These overloads do not affect runtime behavior, as they are
+        erased during execution.
+
+        Therefore, this duplication is considered intentional and acceptable,
+        and should not be refactored or removed.
+    """
 @t.overload
 def progressbar(
     *,

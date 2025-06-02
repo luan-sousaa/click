@@ -80,11 +80,22 @@ def test_deprecated_prompt(runner):
 
 
 def test_invalid_nargs(runner):
-    with pytest.raises(TypeError, match="nargs=-1"):
+    """
+    Verifies that @click.option raises a TypeError for nargs=-1.
 
+    This test ensures that the Click library (or a specific version of it)
+    correctly identifies nargs=-1 as an invalid configuration in certain
+    contexts, leading to a TypeError. The expected error message
+    should contain the substring "nargs=-1".
+    """
+    with pytest.raises(TypeError, match=r"nargs=-1"): # Use r"" for raw string in match (good practice)
         @click.command()
         @click.option("--foo", nargs=-1)
         def cli(foo):
+            # The body of the 'cli' function is not relevant for this test,
+            # as the error is expected during the processing of the @click.option decorator
+            # or the definition of the command. The 'foo' parameter is part of the
+            # command signature being tested.
             pass
 
 
